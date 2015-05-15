@@ -181,7 +181,7 @@ def get_observations_from_datetime(account_id, device_id, component_id, epoch_ts
     url = "{0}/accounts/{1}/data/search".format(base_url, account_id)
     #epoch_string = "{0}".format(epoch_ts)
     epoch_string = -8
-    print epoch_string
+    #print epoch_string
     search = {
         "from": epoch_string,
         "targetFilter": {
@@ -209,13 +209,12 @@ def print_observation_to_file(js, fileName):  # js is result of /accounts/{accou
         series = js["series"]
         series = sorted(series, key=lambda v: v["deviceName"])
         for v in series:
-            print "FName: {2} Device: {0} Count: {1}".format(v["deviceName"], len(v["points"]), fileName)
-            #print "points= {0}".format(v["points"]);
+            #print "FName: {2} Device: {0} Count: {1}".format(v["deviceName"], len(v["points"]), fileName)
             points = v["points"]
             for pv in points:
-                outStr =  "timestamp: {0} value: {1}".format(pv["ts"], pv["value"])
+                #outStr =  "timestamp: {0} value: {1}".format(pv["ts"], pv["value"])
+                outStr =  "{0},{1}".format(pv["ts"], pv["value"])
                 fo.write(outStr + "\n");               
-                #print outStr
 
     fo.close()        
 
